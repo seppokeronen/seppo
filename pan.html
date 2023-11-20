@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Panning Demo</title>
+    <style>
+        #content {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            position: absolute;
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
+        }
+    </style>
+</head>
+<body>
+    <div id="content">Move me!</div>
+
+    <script>
+        (function() {
+            // Get the element to move
+            var content = document.getElementById('content');
+            
+            // Set initial position
+            var posX = 0, posY = 0;
+            var initialAlpha = null, initialBeta = null;
+            
+            // Device Orientation Listener
+            window.addEventListener('deviceorientation', function(event) {
+                if (initialAlpha === null) {
+                    initialAlpha = event.alpha;
+                    initialBeta = event.beta;
+                }
+                
+                var alphaDiff = event.alpha - initialAlpha;
+                var betaDiff = event.beta - initialBeta;
+                
+                posX += alphaDiff * 0.1;
+                posY += betaDiff * 0.1;
+                
+                // Update position
+                content.style.transform = `translate(${posX}px, ${posY}px)`;
+                
+                // Reset for next differential movement
+                initialAlpha = event.alpha;
+                initialBeta = event.beta;
+            });
+
+            // Device Motion Listener
+            window.addEventListener('devicemotion', function(event) {
+                var acceleration = event.accelerationIncludingGravity;
+                
+                // Adjust movement sensitivity as needed
+                posX += acceleration.x;
+                posY += acceleration.y;
+                
+                // Update position
+                content.style.transform = `translate(${posX}px, ${posY}px)`;
+            });
+
+            // Normalize event binding
+            function normalizeMotionEvents() {
+                if ('ondeviceorientationabsolute' in window) {
+                    window.addEventListener('deviceorientationabsolute', handleOrientation, true);
+                } else if ('ondeviceorientation' in window) {
+                    window.addEventListener('deviceorientation', handleOrientation, true);
+                }
+            }
+            
+            function handleOrientation(event) {
+                console.log("Alpha: " + event.alpha);
+                console.log("Beta: " + event.beta);
+                console.log("Gamma: " + event.gamma);
+            }
+            
+            // Bind events
+            normalizeMotionEvents();
+            
+        })();
+    </script>
+</body>
+</html>
