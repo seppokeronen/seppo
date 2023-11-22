@@ -20,7 +20,11 @@
 </head>
 <body>
     <button id="init" type="button">Click me!</button>
-    <p id="info"></p>
+    <div id=""info">
+        <p>alpha: <span id="alpha">?</span></p>
+        <p>beta: <span id="beta">?</span></p>
+        <p>gamma: <span id="gamma">?</span></p>
+    </div>
     <div id="content">Move me!</div>
 
     <script>
@@ -29,7 +33,9 @@
             alpha = event.alpha;
             beta  = event.beta;
             gamma = event.gamma;
-            info.innerHTML = `alpha: ${alpha}  beta: ${beta}  gamma: ${gamma}`
+            alphaspan.innerHTML = alpha
+            betaspan.innerHTML = beta
+            gammaspan.innerHTML = gamma
         }
 
         var permit = () => {
@@ -48,9 +54,10 @@
         }
 
         btn = document.getElementById('init');
-        info = document.getElementById('info');
+        alphaspan = document.getElementById('alpha');
+        betaspan  = document.getElementById('beta');
+        gammaspan = document.getElementById('gamma');
         btn.addEventListener('click', init)
-        info.innerHTML = 'alpha: ?  beta: ?  gamma: ?'
     </script>
 </body>
 </html>
