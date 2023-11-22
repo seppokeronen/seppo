@@ -21,18 +21,26 @@
 <body>
     <button id="init" type="button">Click me!</button>
     <div id=""info">
-        <p>alpha: <span id="alpha">?</span></p>
-        <p>beta: <span id="beta">?</span></p>
-        <p>gamma: <span id="gamma">?</span></p>
+        <p>
+            alpha: <span id="alpha">?</span><br />
+            beta: <span id="beta">?</span><br />
+            gamma: <span id="gamma">?</span>
+        </p>
     </div>
     <div id="content">Move me!</div>
 
     <script>
 
         function orient(event) {
-            alpha = event.alpha;
-            beta  = event.beta;
-            gamma = event.gamma;
+            if (oriented === false) {
+                alpha_base = event.alpha;
+                beta_base  = event.beta;
+                gamma_base = event.gamma;
+                oriented = true;
+            }
+            alpha = event.alpha - alpha_base;
+            beta = event.beta - beta_base;
+            gamma = event.gamma - gamma_base;
             alphaspan.innerHTML = alpha
             betaspan.innerHTML = beta
             gammaspan.innerHTML = gamma
@@ -53,11 +61,15 @@
             permit();
         }
 
-        btn = document.getElementById('init');
-        alphaspan = document.getElementById('alpha');
-        betaspan  = document.getElementById('beta');
-        gammaspan = document.getElementById('gamma');
-        btn.addEventListener('click', init)
+        let oriented = false,
+            alpha_base = 0.0, beta_base = 0.0, gamma_base = 0.0,
+            alpha = 0.0, beta = 0.0, gamma = 0.0;
+
+        let btn = document.getElementById('init'),
+            alphaspan = document.getElementById('alpha'),
+            betaspan  = document.getElementById('beta'),
+            gammaspan = document.getElementById('gamma');
+        btn.addEventListener('click', init);
     </script>
 </body>
 </html>
