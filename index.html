@@ -21,13 +21,17 @@
     </style>
 </head>
 <body>
-    <p>V 0.3</p>
+    <p>V 0.5</p>
     <button id="init" type="button">Click me!</button>
-    <div id=""info">
+    <div id="info">
         <p>
-            alpha: <span id="alpha">?</span><br />
-            beta: <span id="beta">?</span><br />
-            gamma: <span id="gamma">?</span>
+            <meter id="alpha_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
+            <meter id="beta_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
+            <meter id="gamma_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
+            <br />
+            alpha: <span id="alpha_span">?</span><br />
+            beta: <span id="beta_span">?</span><br />
+            gamma: <span id="gamma_span">?</span>
         </p>
     </div>
     <div id="content">Move me!</div>
@@ -44,9 +48,12 @@
             alpha = event.alpha - alpha_base;
             beta = event.beta - beta_base;
             gamma = event.gamma - gamma_base;
-            alphaspan.innerHTML = alpha
-            betaspan.innerHTML = beta
-            gammaspan.innerHTML = gamma
+            alpha_span.innerHTML = alpha
+            beta_span.innerHTML = beta
+            gamma_span.innerHTML = gamma
+            alpha_meter.value = alpha
+            beta_meter.value = beta
+            gamma_meter.value = gamma
         }
 
         var permit = () => {
@@ -69,9 +76,12 @@
             alpha = 0.0, beta = 0.0, gamma = 0.0;
 
         let btn = document.getElementById('init'),
-            alphaspan = document.getElementById('alpha'),
-            betaspan  = document.getElementById('beta'),
-            gammaspan = document.getElementById('gamma');
+            alpha_span = document.getElementById('alpha_span'),
+            beta_span  = document.getElementById('beta_span'),
+            gamma_span = document.getElementById('gamma_span');
+            alpha_meter = document.getElementById('alpha_meter'),
+            beta_meter  = document.getElementById('beta_meter'),
+            gamma_meter = document.getElementById('gamma_meter');
         btn.addEventListener('click', init);
     </script>
 </body>
