@@ -9,20 +9,25 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <p>V 0.8</p>
+    <p>V 0.9</p>
     <button id="init" type="button">Click me!</button>
     <div id="info" style="display:none;">
         <p>
-            <meter id="alpha_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
-            <meter id="beta_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
-            <meter id="gamma_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
+            <meter id="alpha_meter" value="0" min="-360.0" max="360.0" style="width:20em;"></meter><br>
+            <meter id="beta_meter" value="0" min="-360.0" max="360.0" style="width:20em;"></meter><br>
+            <meter id="gamma_meter" value="0" min="-360.0" max="360.0" style="width:20em;"></meter><br>
             <br />
             alpha: <span id="alpha_span">?</span><br />
             beta: <span id="beta_span">?</span><br />
             gamma: <span id="gamma_span">?</span>
         </p>
     </div>
-    <div id="content">Move me!</div>
+    <div id="content" style="display:none;">
+        <div class="tile">
+            Some<br /> Frogs
+        </div>
+        Move me!
+    </div>
 
     <script src="./index.js"></script>
 </body>
