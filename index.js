@@ -41,7 +41,7 @@
 
     let init = () => {
         btn.style.display = 'none';
-        document.getElementById('info').style.display = 'none';
+        document.getElementById('info').style.display = 'block';
         permit();
     }
     let btn = document.getElementById('init');
