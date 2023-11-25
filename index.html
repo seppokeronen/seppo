@@ -6,24 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Mobile Panning Demo</title>
-    <style>
-        #content {
-            width: 100px;
-            height: 100px;
-            background-color: blue;
-            color: white;
-            text-align: center;
-            line-height: 100px;
-            position: absolute;
-            top: calc(50% - 50px);
-            left: calc(50% - 50px);
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <p>V 0.5</p>
+    <p>V 0.7</p>
     <button id="init" type="button">Click me!</button>
-    <div id="info">
+    <div id="info" style="display:none;">
         <p>
             <meter id="alpha_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
             <meter id="beta_meter" value="0" min="-360.0" max="360.0" style="width:12em;"></meter><br>
@@ -36,53 +24,6 @@
     </div>
     <div id="content">Move me!</div>
 
-    <script>
-
-        function orient(event) {
-            if (oriented === false) {
-                alpha_base = event.alpha;
-                beta_base  = event.beta;
-                gamma_base = event.gamma;
-                oriented = true;
-            }
-            alpha = event.alpha - alpha_base;
-            beta = event.beta - beta_base;
-            gamma = event.gamma - gamma_base;
-            alpha_span.innerHTML = alpha
-            beta_span.innerHTML = beta
-            gamma_span.innerHTML = gamma
-            alpha_meter.value = alpha
-            beta_meter.value = beta
-            gamma_meter.value = gamma
-        }
-
-        var permit = () => {
-            DeviceOrientationEvent.requestPermission()
-            .then(response => {
-                if (response == 'granted') {
-                    window.addEventListener('deviceorientation', orient)
-                }
-            })
-            .catch(console.error)
-        }
-
-        var init = () => {
-            btn.style.display = 'none';
-            permit();
-        }
-
-        let oriented = true,
-            alpha_base = 0.0, beta_base = 0.0, gamma_base = 0.0,
-            alpha = 0.0, beta = 0.0, gamma = 0.0;
-
-        let btn = document.getElementById('init'),
-            alpha_span = document.getElementById('alpha_span'),
-            beta_span  = document.getElementById('beta_span'),
-            gamma_span = document.getElementById('gamma_span');
-            alpha_meter = document.getElementById('alpha_meter'),
-            beta_meter  = document.getElementById('beta_meter'),
-            gamma_meter = document.getElementById('gamma_meter');
-        btn.addEventListener('click', init);
-    </script>
+    <script src="./index.js"></script>
 </body>
 </html>
