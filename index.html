@@ -9,8 +9,11 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <p>V 0.9</p>
-    <button id="init" type="button">Click me!</button>
+    <p>V 0.10</p>
+    <div id="init">
+        <button id="sensor_button" type="button">Orientation Sensors</button>
+        <button id="content_button" type="button">Content Scene</button>
+    </div>
     <div id="info" style="display:none;">
         <p>
             <meter id="alpha_meter" value="0" min="-360.0" max="360.0" style="width:20em;"></meter><br>
@@ -26,7 +29,6 @@
         <div class="tile">
             Some<br /> Frogs
         </div>
-        Move me!
     </div>
 
     <script src="./index.js"></script>

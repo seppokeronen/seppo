@@ -11,40 +11,56 @@
         beta_meter  = document.getElementById('beta_meter'),
         gamma_meter = document.getElementById('gamma_meter');
 
-    function orient(event) {
-        if (oriented === false) {
-            alpha_base = event.alpha;
-            beta_base  = event.beta;
-            gamma_base = event.gamma;
-            oriented = true;
+        function rawOrient(event) {
+            alpha = event.alpha;
+            beta = event.beta;
+            gamma = event.gamma;
+            alpha_span.innerHTML = alpha
+            beta_span.innerHTML = beta
+            gamma_span.innerHTML = gamma
+            alpha_meter.value = alpha
+            beta_meter.value = beta
+            gamma_meter.value = gamma
         }
-        alpha = event.alpha - alpha_base;
-        beta = event.beta - beta_base;
-        gamma = event.gamma - gamma_base;
-        alpha_span.innerHTML = alpha
-        beta_span.innerHTML = beta
-        gamma_span.innerHTML = gamma
-        alpha_meter.value = alpha
-        beta_meter.value = beta
-        gamma_meter.value = gamma
-    }
-
-    var permit = () => {
+    
+        function deltaOrient(event) {
+            if (oriented === false) {
+                alpha_base = event.alpha;
+                beta_base  = event.beta;
+                gamma_base = event.gamma;
+                oriented = true;
+            }
+            alpha = event.alpha - alpha_base;
+            beta = event.beta - beta_base;
+            gamma = event.gamma - gamma_base;
+        }
+    
+    let permit = (listener) => {
         DeviceOrientationEvent.requestPermission()
         .then(response => {
             if (response == 'granted') {
-                window.addEventListener('deviceorientation', orient)
+                window.addEventListener('deviceorientation', listener)
             }
         })
         .catch(console.error)
     }
 
-    let init = () => {
-        btn.style.display = 'none';
+    let initSensors = () => {
+        init.style.display = 'none';
         document.getElementById('info').style.display = 'block';
-        permit();
+        permit(rawOrient);
     }
-    let btn = document.getElementById('init');
-    btn.addEventListener('click', init);
+    
+    let initContent = () => {
+        init.style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        permit(deltaOrient);
+    }
+    
+    let init = document.getElementById('init'),
+        sbtn = document.getElementById('sensor_button'),
+        cbtn = document.getElementById('content_button');
+    sbtn.addEventListener('click', initSensors);
+    cbtn.addEventListener('click', initContent);
 
 })()
