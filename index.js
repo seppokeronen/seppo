@@ -1,6 +1,6 @@
 (() => {
 
-    let oriented = true,
+    let oriented = false,
         alpha_base = 0.0, beta_base = 0.0, gamma_base = 0.0,
         alpha = 0.0, beta = 0.0, gamma = 0.0,
 
@@ -36,7 +36,6 @@
                 beta_base  = event.beta;
                 gamma_base = event.gamma;
                 oriented = true;
-                console.log(`beta_base: ${beta_base}`);
             }
             alpha = event.alpha - alpha_base;
             beta = event.beta - beta_base;
@@ -46,7 +45,7 @@
             // div.style.transform = "translate(5px,10px)";
             // div.style.translate = '0px 50px';
             for (const tile of tiles) {
-                tile.style.translate = `${dx}px ${dy+300}px`;
+                tile.style.translate = `${dx}px ${dy}px`;
             }
         }
     
