@@ -6,7 +6,7 @@
 
         screen_width = window.innerWidth,
         screen_height = window.innerHeight,
-        muX = 12.4 * screen_width / 360.0,
+        muX = 6.2 * screen_width / 360.0,
         muY = 6.2 * screen_height / 360.0,
 
         alpha_span = document.getElementById('alpha_span'),
