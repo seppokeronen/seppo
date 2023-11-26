@@ -1,4 +1,4 @@
-// V 0.21
+// V 0.22
 // seppo.keronen@gmail.com
 //
 
@@ -51,7 +51,7 @@
         }
     }
     
-    let cureent_listener = null;
+    let current_listener = null;
 
     let permit = (listener) => {
         DeviceOrientationEvent.requestPermission()
