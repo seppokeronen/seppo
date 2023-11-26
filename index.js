@@ -1,3 +1,7 @@
+// V 0.20
+// seppo.keronen@gmail.com
+//
+
 (() => {
 
     let oriented = false,
