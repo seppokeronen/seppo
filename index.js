@@ -36,6 +36,7 @@
                 beta_base  = event.beta;
                 gamma_base = event.gamma;
                 oriented = true;
+                console.log(`beta_base: ${beta_base}`);
             }
             alpha = event.alpha - alpha_base;
             beta = event.beta - beta_base;
@@ -45,7 +46,7 @@
             // div.style.transform = "translate(5px,10px)";
             // div.style.translate = '0px 50px';
             for (const tile of tiles) {
-                tile.style.translate = `${dx}px ${dy}px`;
+                tile.style.translate = `${dx+200}px ${dy}px`;
             }
         }
     
