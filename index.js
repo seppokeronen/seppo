@@ -42,31 +42,35 @@
         gamma = event.gamma - gamma_base;
         dx = muX * gamma;
         dy = muY * beta;
-        // div.style.transform = "translate(5px,10px)";
-        // div.style.translate = '0px 50px';
         for (const tile of tiles) {
             tile.style.translate = `${dx}px ${dy}px`;
         }
     }
     
+    let cureent_listener = none;
+
     let permit = (listener) => {
         DeviceOrientationEvent.requestPermission()
         .then(response => {
             if (response == 'granted') {
-                window.addEventListener('deviceorientation', listener)
+                if (current_listener) {
+                    window.removeEventListener('deviceorientation', current_listener);
+                }
+                window.addEventListener('deviceorientation', listener);
+                current_listener = listener;
             }
         })
         .catch(console.error)
     }
 
     let initSensors = () => {
-        document.getElementById('init').style.display = 'none';
+        document.getElementById('content').style.display = 'none';
         document.getElementById('info').style.display = 'block';
         permit(rawOrient);
     }
     
     let initContent = () => {
-        document.getElementById('init').style.display = 'none';
+        document.getElementById('info').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         permit(deltaOrient);
     }
