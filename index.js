@@ -46,7 +46,7 @@
             // div.style.transform = "translate(5px,10px)";
             // div.style.translate = '0px 50px';
             for (const tile of tiles) {
-                tile.style.translate = `${dx+200}px ${dy}px`;
+                tile.style.translate = `${dx}px ${dy+300}px`;
             }
         }
     
