@@ -1,10 +1,7 @@
-// V 0.22
-// seppo.keronen@gmail.com
-//
-
 (() => {
 
-    let oriented = false,
+    let version = 'V 0.23',
+        oriented = false,
         alpha_base = 0.0, beta_base = 0.0, gamma_base = 0.0,
         alpha = 0.0, beta = 0.0, gamma = 0.0,
 
@@ -60,6 +57,7 @@
                 if (current_listener) {
                     window.removeEventListener('deviceorientation', current_listener);
                 }
+                oriented = false;
                 window.addEventListener('deviceorientation', listener);
                 current_listener = listener;
             }
@@ -79,6 +77,7 @@
         permit(deltaOrient);
     }
 
+    document.getElementById('version').innerHTML = version;
     document.getElementById('sensor_button').addEventListener('click', initSensors);
     document.getElementById('content_button').addEventListener('click', initContent);
 
